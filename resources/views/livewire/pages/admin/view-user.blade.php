@@ -26,7 +26,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <th>{{ ($users->currentpage() - 1) * $users->perpage() + $loop->index + 1 }}</th>
-                                <td>{{ $user->name }}</td>
+                                <td><a href="{{ route('edit-user', $user->id) }}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @if ($user->roles->first()->display_name == 'User')

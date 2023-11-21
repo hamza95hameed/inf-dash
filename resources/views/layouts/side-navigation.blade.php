@@ -10,7 +10,9 @@
             'href' => [
                 [
                     'section_text' => 'User',
-                    'section_list' => [['href' => 'view-user', 'text' => 'List'], ['href' => 'add-user', 'text' => 'Add']],
+                    'section_list' => [
+                        ['href' => 'view-user', 'text' => 'List'], 
+                        ['href' => 'add-user', 'text' => 'Add']],
                 ],
             ],
             'text' => 'User',
