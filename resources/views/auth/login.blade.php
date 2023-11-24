@@ -1,58 +1,79 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="img-fluid p-4 shadow-light rounded-circle" style="max-width: 130px" />
-            </a>
-        </x-slot>
+@extends('layouts.auth.app')
 
-        <x-slot name="title">
-            <h4>Login</h4>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <x-label for="password" :value="__('Password')" />
-                @if (Route::has('password.request'))
-                    <div class="float-right">
-                        <a href="{{ route('password.request') }}" class="text-small">
-                            {{ __('Forgot your password?') }}
-                        </a>
+@section('content')
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <div class="login-brand">
+                        <img src="assets/img/stisla-fill.svg" alt="logo" width="100"
+                            class="shadow-light rounded-circle">
                     </div>
-                @endif
-                <x-input id="password" type="password" name="password" required autocomplete="current-password" />
-            </div>
 
-            <!-- Remember Me -->
-            <div class="form-group">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember_me">
-                    <label class="custom-control-label" for="remember_me">{{ __('Remember Me') }}</label>
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Login</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <form method="POST" action="#" class="needs-validation" novalidate="">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                        <div class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror                                    
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="d-block">
+                                        <label for="password" class="control-label">Password</label>
+                                        <div class="float-right">
+                                            <a href="auth-forgot-password.html" class="text-small">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
+
+                                    @error('password')
+                                        <div class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
+                                            id="remember-me">
+                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-muted text-center">
+                        Don't have an account? <a href="{{ route('register') }}">Create One</a>
+                    </div>
+                    <div class="simple-footer">
+                        Copyright &copy; Stisla 2018
+                    </div>
                 </div>
             </div>
-
-            <div class="d-flex align-items-center justify-content-between">
-                <a href="{{ route('register') }}" class="text-small">Register</a>
-                <x-button type='submit'>
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </section>
+@endsection
