@@ -24,7 +24,8 @@ class User extends Authenticatable
         'is_admin',
         'phone',
         'address',
-        'iban'
+        'iban',
+        'commission'
     ];
 
     /**

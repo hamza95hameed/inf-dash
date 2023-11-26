@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Discount\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::middleware(['auth'])->group(function () {
         return view('home');
     });
     Route::resource('users', UserController::class);
+    Route::resource('discounts', DiscountController::class);
 });

@@ -72,6 +72,24 @@
                                             </div>
                                         @enderror  
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="iban">IBAN</label>
+                                        <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban') }}" name="iban" placeholder="IBAN">
+                                        @error('iban')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div>              
+                                    <div class="form-group col-md-6">
+                                        <label for="commission">Commission</label>
+                                        <input type="text" class="form-control @error('commission') is-invalid @enderror" id="commission" value="{{ old('commission') }}" name="commission" placeholder="Commission">
+                                        @error('commission')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div>              
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address</label>
@@ -82,15 +100,6 @@
                                         </div>
                                     @enderror  
                                 </div>
-                                <div class="form-group">
-                                    <label for="iban">IBAN</label>
-                                    <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban') }}" name="iban" placeholder="IBAN">
-                                    @error('iban')
-                                        <div class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror  
-                                </div>              
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>

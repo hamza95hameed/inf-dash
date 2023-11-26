@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $userid = auth()->user()->id;
-        $users = User::where('is_admin', 0)->where('id', '!=', $userid)->get();
+        $users  = User::where('is_admin', 0)->where('id', '!=', $userid)->get();
         return view("admin.users.list", compact("users"));
     }
 
@@ -49,15 +49,17 @@ class UserController extends Controller
             "phone"                 => "required|string|max:20",
             "address"               => "required|string|max:255",
             "iban"                  => "required|string",
+            "commission"            => "required|numeric",
         ]);
 
         User::create([
-            "name"     => $request->first_name.' '.$request->last_name,
-            "email"    => $request->email,
-            "password" => Hash::make($request->password),
-            "phone"    => $request->phone,
-            "address"  => $request->address,
-            "iban"     => $request->iban,
+            "name"       => $request->first_name.' '.$request->last_name,
+            "email"      => $request->email,
+            "password"   => Hash::make($request->password),
+            "phone"      => $request->phone,
+            "address"    => $request->address,
+            "iban"       => $request->iban,
+            "commission" => $request->commission,
         ]);
 
         return redirect()->route("users.index")->with("success","User created successfully");
@@ -105,14 +107,16 @@ class UserController extends Controller
             "phone"                 => "required|string|max:20",
             "address"               => "required|string|max:255",
             "iban"                  => "required|string",
+            "commission"            => "required|numeric",
         ]);
 
         $user->update([
-            "name"     => $request->first_name.' '.$request->last_name,
-            "email"    => $request->email,
-            "phone"    => $request->phone,
-            "address"  => $request->address,
-            "iban"     => $request->iban,
+            "name"       => $request->first_name.' '.$request->last_name,
+            "email"      => $request->email,
+            "phone"      => $request->phone,
+            "address"    => $request->address,
+            "iban"       => $request->iban,
+            "commission" => $request->commission,
         ]);
 
         return redirect()->route("users.index")->with("success","User updated successfully");

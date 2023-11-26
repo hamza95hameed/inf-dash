@@ -37,15 +37,19 @@
                                     <label for="phone">Phone</label>
                                     <input type="tel" class="form-control" readonly id="phone" value="{{ $user->phone }}" name="phone" placeholder="Phone"> 
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="iban">IBAN</label>
+                                    <input type="text" class="form-control" readonly id="iban" value="{{ $user->iban }}" name="iban" placeholder="IBAN">
+                                </div>              
+                                <div class="form-group col-md-6">
+                                    <label for="commission">Commission</label>
+                                    <input type="text" class="form-control" readonly id="commission" value="{{ $user->commission }}" name="commission" placeholder="Commission">
+                                </div>              
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control" readonly id="address" value="{{ $user->address }}" name="address" placeholder="1234 Main St">
                             </div>
-                            <div class="form-group">
-                                <label for="iban">IBAN</label>
-                                <input type="text" class="form-control" readonly id="iban" value="{{ $user->iban }}" name="iban" placeholder="IBAN">
-                            </div>              
                         </div>
                     </div>
                 </div>

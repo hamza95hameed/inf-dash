@@ -8,10 +8,10 @@
 @section('content')
 	<section class="section">
 		<div class="section-header">
-			<h1>Users</h1>
+			<h1>Discounts</h1>
 			<div class="section-header-breadcrumb">
 				<div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-				<div class="breadcrumb-item">Users</div>
+				<div class="breadcrumb-item">Discounts</div>
 			</div>
 		</div>
 		<div id="output-status">
@@ -30,30 +30,28 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-striped" id="user-list-datatable">
+								<table class="table table-striped" id="discount-list-datatable">
 								<thead>                                 
 									<tr>
 										<th class="text-center">#</th>
 										<th>Name</th>
-										<th>Phone</th>
-										<th>Email</th>
-										<th>Commission</th> 
-										<th>IBAN</th> 
+										<th>Amount</th>
+										<th>Type</th>
+										<th>User</th>
 										<th>Action</th>
 									</tr>
 									</thead>
 									<tbody>
-										@foreach ($users as $user)
+										@foreach ($discounts as $discount)
 											<tr>
-												<td class="text-center">{{ $user->id }}</td>
-												<td>{{ $user->name }}</td>								
-												<td>{{ $user->phone }}</td>								
-												<td>{{ $user->email }}</td>								
-												<td>{{ $user->commission }}</td>								
-												<td>{{ $user->iban }}</td>								
+												<td class="text-center">{{ $discount->id }}</td>
+												<td>{{ $discount->name }}</td>								
+												<td>{{ $discount->amount }}</td>								
+												<td>{{ $discount->type }}</td>								
+												<td>{{ $discount->user->name }}</td>								
 												<td>
-													<a href="{{ route('users.edit', $user->id) }}"><i class="fas fa-pen"></i></a>  
-													<a href="{{ route('users.show', $user->id) }}"><i class="fas fa-eye"></i></a>  
+													<a href="{{ route('discounts.edit', $discount->id) }}"><i class="fas fa-pen"></i></a>  
+													<a href="{{ route('discounts.show', $discount->id) }}"><i class="fas fa-eye"></i></a>  
 												</td>	
 											</tr>										
 										@endforeach                              
@@ -73,10 +71,10 @@
 	<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
-			$('#user-list-datatable').dataTable({
+			$('#discount-list-datatable').dataTable({
 				"columnDefs": [
 					{
-						"targets": 6,
+						"targets": 5,
 						"orderable": false
 					}
 				]
