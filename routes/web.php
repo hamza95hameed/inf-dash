@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Discount\DiscountController;
+use App\Http\Controllers\Order\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::resource('users', UserController::class);
     Route::resource('discounts', DiscountController::class);
+    Route::resource('orders', OrderController::class);
 });
+
+Route::post('/shopify/order', [OrderController::class, 'shopifyOrder']);
