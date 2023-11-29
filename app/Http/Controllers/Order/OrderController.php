@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Discount;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -16,7 +16,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user   = auth()->user();
+        $orders = '';
+        if($user->is_admin == 1){
+            $orders = Order::all();
+        }else{
+            $orders = Order::where('user_id', $user->id)->get();
+        }
+
+        return view("admin.order.list", compact("orders"));
     }
 
     /**
@@ -48,7 +56,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view("admin.order.show", compact("order"));
     }
 
     /**
@@ -104,17 +112,23 @@ class OrderController extends Controller
 
         // Compare the computed HMAC with the received HMAC
         if (hash_equals($receivedHmac, $computedHmac)) {
-            // Webhook request is verified
-            // Proceed with handling the payload
 
-            logger('=========Webhook payload================');
-            logger($webhookPayload);
-            $newFilePath = 'webhook/webhook_logs.txt';
-            Storage::disk('public')->append($newFilePath, $webhookPayload . PHP_EOL);
-            logger('=========Webhook payload================');
+            $data = json_decode($webhookPayload,true);
+            $discount_code = $data['discount_codes'][0]['code'];
+            if($discount_code){
+                $discount   = Discount::where('name', $discount_code)->first();
+                $commission = ($discount->user->commission / 100) * $data['total_price'];
+
+                Order::create([
+                    'order_no'    => $data['order_number'],
+                    'discount_id' => $discount->id,
+                    'user_id'     => $discount->user_id,
+                    'commission'  => $commission
+                ]);
+            }
 
             // Respond with a success status (optional)
-            return response()->json(['message' => 'Webhook received and verified.'], 200);
+            return response()->json(['message' => 'Order created successfully.'], 200);
         } else {
             // Invalid webhook request
             // Respond with an error status (optional)

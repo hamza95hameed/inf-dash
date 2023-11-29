@@ -27,6 +27,20 @@
                         <li><a class="nav-link" href="{{ route('discounts.create') }}">Add</a></li>
                     </ul>
                 </li>
+                <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Orders</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('orders.index') }}">List</a></li>
+                    </ul>
+                </li>
+            @endunless
+            @unless (auth()->user()->is_admin == 1)
+                <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Orders</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('orders.index') }}">List</a></li>
+                    </ul>
+                </li>
             @endunless
         </ul>
     </aside>
