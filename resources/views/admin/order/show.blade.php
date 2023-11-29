@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="discount_code">Discount code</label>
-                                    <input type="text" class="form-control" readonly id="discount_code" value="{{ $order->discount_code }}" name="discount_code">
+                                    <input type="text" class="form-control" readonly id="discount_code" value="{{ $order->discount->name }}" name="discount_code">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="commission">Commission</label>
