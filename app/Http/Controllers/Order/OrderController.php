@@ -103,7 +103,9 @@ class OrderController extends Controller
             // Proceed with handling the payload
             // Example: Log the payload or perform necessary actions
             logger($webhookPayload);
-            // file_put_contents('webhook_logs.txt', $webhookPayload . PHP_EOL, FILE_APPEND);
+
+            $new_file = public_path("storage/webhook/webhook_logs.txt");
+            file_put_contents($new_file, $webhookPayload . PHP_EOL, FILE_APPEND);
 
             // Respond with a success status (optional)
             http_response_code(200);
