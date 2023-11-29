@@ -29,5 +29,3 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('discounts', DiscountController::class);
     Route::resource('orders', OrderController::class);
 });
-
-Route::post('/shopify/order', [OrderController::class, 'shopifyOrder']);

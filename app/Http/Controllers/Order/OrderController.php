@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Order;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -92,29 +93,33 @@ class OrderController extends Controller
         $secretKey = env('SHOPIFY_APP_SECRET_KEY'); // Replace this with your actual secret key
 
         // Get the HMAC signature sent by Shopify
-        $receivedHmac = $_SERVER['HTTP_X_SHOPIFY_HMAC_SHA256']; // Replace this with the actual header name received
+        $receivedHmac = $request->header('X-Shopify-Hmac-Sha256'); // Replace with the actual header name received
 
         // Calculate the HMAC signature locally
         $computedHmac = base64_encode(hash_hmac('sha256', $webhookPayload, $secretKey, true));
+
+        logger($receivedHmac);
+        logger($computedHmac);
+        logger(hash_equals($receivedHmac, $computedHmac));
 
         // Compare the computed HMAC with the received HMAC
         if (hash_equals($receivedHmac, $computedHmac)) {
             // Webhook request is verified
             // Proceed with handling the payload
-            // Example: Log the payload or perform necessary actions
-            logger($webhookPayload);
 
-            $new_file = public_path("storage/webhook/webhook_logs.txt");
-            file_put_contents($new_file, $webhookPayload . PHP_EOL, FILE_APPEND);
+            logger('=========Webhook payload================');
+            logger($webhookPayload);
+            $newFilePath = 'webhook/webhook_logs.txt';
+            Storage::disk('public')->append($newFilePath, $webhookPayload . PHP_EOL);
+            logger('=========Webhook payload================');
 
             // Respond with a success status (optional)
-            http_response_code(200);
-            echo "Webhook received and verified.";
+            return response()->json(['message' => 'Webhook received and verified.'], 200);
         } else {
             // Invalid webhook request
             // Respond with an error status (optional)
-            http_response_code(401);
-            echo "Invalid webhook request. Authentication failed.";
+            return response()->json(['error' => 'Invalid webhook request. Authentication failed.'], 401);
         }
+        
     }
 }
