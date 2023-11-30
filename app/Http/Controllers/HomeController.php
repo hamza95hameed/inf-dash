@@ -26,13 +26,16 @@ class HomeController extends Controller
     {
         $user  = auth()->user();
         $query = Order::orderBy('commission', 'desc');
+        $total_earning = $current_balance = 0;
 
         if($user->is_admin == 0){
            $query = $query->where('user_id', $user->id);
+           $total_earning   = $user->total_earning;
+           $current_balance = $user->current_balance;
         }
 
         $orders = $query->get();
 
-        return view('home', compact('orders'));
+        return view('home', compact('orders', 'total_earning', 'current_balance'));
     }
 }

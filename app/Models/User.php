@@ -25,7 +25,10 @@ class User extends Authenticatable
         'phone',
         'address',
         'iban',
-        'commission'
+        'commission',
+        'current_balance',
+        'total_withdraw',
+        'total_earning'
     ];
 
     /**

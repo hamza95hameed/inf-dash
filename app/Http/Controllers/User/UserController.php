@@ -107,7 +107,6 @@ class UserController extends Controller
             "phone"                 => "required|string|max:20",
             "address"               => "required|string|max:255",
             "iban"                  => "required|string",
-            "commission"            => "required|numeric",
         ]);
 
         $user->update([
@@ -116,10 +115,10 @@ class UserController extends Controller
             "phone"      => $request->phone,
             "address"    => $request->address,
             "iban"       => $request->iban,
-            "commission" => $request->commission,
+            "commission" => isset($request->commission) ? $request->commission : 0,
         ]);
 
-        return redirect()->route("users.index")->with("success","User updated successfully");
+        return redirect()->back()->with("success","User updated successfully");
     }
 
     /**

@@ -22,7 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('iban')->nullable();
             $table->string('address')->nullable();
-            $table->unsignedInteger('commission')->nullable();
+            $table->float('commission',15, 6)->default(0);
+            $table->float('current_balance',15, 6)->default(0);
+            $table->float('total_withdraw',15, 6)->default(0);
+            $table->float('total_earning',15, 6)->default(0);
             $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Discount;
 use Illuminate\Http\Request;
@@ -124,6 +125,16 @@ class OrderController extends Controller
                     'discount_id' => $discount->id,
                     'user_id'     => $discount->user_id,
                     'commission'  => $commission
+                ]);
+
+                $user = User::find($discount->user_id)->first();
+
+                $current_balance = $user->current_balance + $commission;
+                $total_earning   = $user->total_earning + $commission;
+
+                $user->update([
+                    'total_earning'   => $total_earning,
+                    'current_balance' => $current_balance
                 ]);
             }
 
