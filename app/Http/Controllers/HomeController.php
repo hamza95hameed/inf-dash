@@ -34,8 +34,9 @@ class HomeController extends Controller
            $current_balance = $user->current_balance;
         }
 
-        $orders = $query->get();
+        $orders   = $query->get();
+        $orderSum = $query->sum('commission');
 
-        return view('home', compact('orders', 'total_earning', 'current_balance'));
+        return view('home', compact('orders', 'total_earning', 'current_balance', 'orderSum'));
     }
 }

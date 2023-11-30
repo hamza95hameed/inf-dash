@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Order\OrderController;
@@ -22,9 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function(){
-        return view('home');
-    });
+    Route::get('/dashboard',  [HomeController::class, 'index']);
     Route::resource('users', UserController::class);
     Route::resource('discounts', DiscountController::class);
     Route::resource('orders', OrderController::class);
