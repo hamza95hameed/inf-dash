@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user  = auth()->user();
+        $query = Order::orderBy('commission', 'desc');
+
+        if($user->is_admin == 0){
+           $query = $query->where('user_id', $user->id);
+        }
+
+        $orders = $query->get();
+
+        return view('home', compact('orders'));
     }
 }
