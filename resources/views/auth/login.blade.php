@@ -34,11 +34,6 @@
                                 <div class="form-group">
                                     <div class="d-block">
                                         <label for="password" class="control-label">Password</label>
-                                        {{-- <div class="float-right">
-                                            <a href="{{ route('forget.password.get') }}" class="text-small">
-                                                Forgot Password?
-                                            </a>
-                                        </div> --}}
                                     </div>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
@@ -50,15 +45,6 @@
                                         </div>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
-                                            id="remember-me">
-                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                         Login
@@ -69,9 +55,6 @@
                     </div>
                     <div class="mt-5 text-muted text-center">
                         Don't have an account? <a href="{{ route('register') }}">Create One</a>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; Stisla 2018
                     </div>
                 </div>
             </div>

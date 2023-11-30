@@ -107,15 +107,12 @@ class OrderController extends Controller
         // Calculate the HMAC signature locally
         $computedHmac = base64_encode(hash_hmac('sha256', $webhookPayload, $secretKey, true));
 
-        logger($receivedHmac);
-        logger($computedHmac);
-        logger(hash_equals($receivedHmac, $computedHmac));
-
         // Compare the computed HMAC with the received HMAC
         if (hash_equals($receivedHmac, $computedHmac)) {
 
-            $data = json_decode($webhookPayload,true);
+            $data          = json_decode($webhookPayload,true);
             $discount_code = $data['discount_codes'][0]['code'];
+
             if($discount_code){
                 $discount   = Discount::where('name', $discount_code)->first();
                 $commission = ($discount->user->commission / 100) * $data['total_price'];

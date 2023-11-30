@@ -80,7 +80,43 @@
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror  
-                                    </div>              
+                                    </div>           
+                                    <div class="form-group col-md-3">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" value="{{ old('city') }}" name="city" placeholder="City">
+                                        @error('city')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div> 
+                                    <div class="form-group col-md-3">
+                                        <label for="state">State</label>
+                                        <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" value="{{ old('state') }}" name="state" placeholder="State">
+                                        @error('state')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div> 
+                                    <div class="form-group col-md-6">
+                                        <label for="zip_code">Zip code</label>
+                                        <input type="text" class="form-control @error('zip_code') is-invalid @enderror" id="zip_code" value="{{ old('zip_code') }}" name="zip_code" placeholder="Zip code">
+                                        @error('zip_code')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div>    
+                                    <div class="form-group col-md-6">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" value="{{ old('address') }}" name="address" placeholder="1234 Main St">
+                                        @error('address')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror  
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="commission">Commission</label>
                                         <input type="text" class="form-control @error('commission') is-invalid @enderror" id="commission" value="{{ old('commission') }}" name="commission" placeholder="Commission">
@@ -90,15 +126,6 @@
                                             </div>
                                         @enderror  
                                     </div>              
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" value="{{ old('address') }}" name="address" placeholder="1234 Main St">
-                                    @error('address')
-                                        <div class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror  
                                 </div>
                             </div>
                             <div class="card-footer">
