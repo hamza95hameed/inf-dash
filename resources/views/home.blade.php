@@ -9,16 +9,16 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 @component('components.statistics.index')
                     @slot('title') Total orders @endslot
-                    @slot('count') {{ count($orders) }} @endslot
+                    @slot('count') {{ count(@$orders) }} @endslot
                 @endcomponent
                 @if (auth()->user()->is_admin == 0)
                     @component('components.statistics.index')
                         @slot('title') Current balance @endslot
-                        @slot('count') {{ $current_balance }} @endslot
+                        @slot('count') {{ @$current_balance }} @endslot
                     @endcomponent
                     @component('components.statistics.index')
                         @slot('title') Total earning @endslot
-                        @slot('count') {{ $total_earning }} @endslot
+                        @slot('count') {{ @$total_earning }} @endslot
                     @endcomponent                    
                 @endif
             </div>
