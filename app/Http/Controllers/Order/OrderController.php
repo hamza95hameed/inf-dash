@@ -128,7 +128,11 @@ class OrderController extends Controller
                 ]);
 
                 $user = User::find($discount->user_id)->first();
-
+                logger('--------------------------------');
+                logger($user);
+                logger('--------------------------------');
+                logger($discount->user_id);
+                logger('--------------------------------');
                 $current_balance = $user->current_balance + $commission;
                 $total_earning   = $user->total_earning + $commission;
 
