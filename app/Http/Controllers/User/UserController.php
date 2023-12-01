@@ -116,7 +116,7 @@ class UserController extends Controller
             "zip_code"   => "required|string|max:255",
             "address"    => "required|string|max:255",
             "iban"       => "required|string",
-            "commission" => "required|numeric",
+            "commission" => "numeric",
         ]);
 
         $user->update([

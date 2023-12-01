@@ -114,7 +114,7 @@
                                             </div>
                                         @enderror  
                                     </div>
-                                    @if (auth()->user()->is_admin == 1)
+                                    @if (auth()->user()->is_admin == 1 && $user->is_admin == 0)
                                         <div class="form-group col-md-6">
                                             <label for="commission">Commission</label>
                                             <input type="text" class="form-control @error('commission') is-invalid @enderror" id="commission" value="{{ old('commission', $user->commission) }}" name="commission" placeholder="Commission">

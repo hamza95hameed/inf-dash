@@ -54,20 +54,6 @@
                                             </div>
                                         @enderror  
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="user_id">User</label>
-                                        <select name="user_id" class="form-control select2 @error('user_id') is-invalid @enderror" id="user_id">
-                                            <option value="">Select user</option>
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}" {{ $discount->user_id == $user->id ? 'selected': ''}}>{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('user_id')
-                                            <div class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror  
-                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">

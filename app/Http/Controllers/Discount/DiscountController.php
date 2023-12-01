@@ -97,11 +97,9 @@ class DiscountController extends Controller
         
         $discount->update([
             "name"    => $request->name,
-            "user_id" => $request->user_id,
             "type"    => $request->type,
             "amount"  => $request->amount,
         ]);
-        // dd($request->all(), $discount);
 
         return redirect()->route("discounts.index")->with("success","Discount updated successfully");
     }

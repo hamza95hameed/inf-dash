@@ -49,7 +49,7 @@
 												<td>{{ $user->name }}</td>								
 												<td>{{ $user->phone }}</td>								
 												<td>{{ $user->email }}</td>								
-												<td>{{ $user->commission }}</td>								
+												<td>{{ $user->commission }}%</td>								
 												<td>{{ $user->iban }}</td>								
 												<td>
 													<a href="{{ route('users.edit', $user->id) }}"><i class="fas fa-pen"></i></a>  
