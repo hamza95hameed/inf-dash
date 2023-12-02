@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Language\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::post('lang/change', [LanguageController::class, 'change'])->name('changeLang');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',  [HomeController::class, 'index']);
     Route::resource('users', UserController::class);

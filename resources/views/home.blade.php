@@ -16,7 +16,7 @@
                 @endcomponent
                 @if (auth()->user()->is_admin == 0)
                     @component('components.statistics.index')
-                        @slot('title') Current balance @endslot
+                        @slot('title') {{ __('messages.current-balance') }} @endslot
                         @slot('count') {{ @$current_balance }} @endslot
                     @endcomponent
                     @component('components.statistics.index')
