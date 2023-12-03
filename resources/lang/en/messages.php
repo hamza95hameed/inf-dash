@@ -16,5 +16,12 @@
         "zip-code" => "Zip code",
         "iban" => "IBAN",
         "address" => "Address",
-        "current-balance" => "Current balance"
+        "current-balance" => "Current balance",
+        "total-commission" => "Total commission",
+        "order-number" => "Order number",
+        "user-name" => "User name",
+        "discount-code" => "Discount code",
+        "commission" => "Commission",
+        "action"=> "Action",
+
     ];

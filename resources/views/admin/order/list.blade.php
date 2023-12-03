@@ -34,11 +34,11 @@
 								<thead>                                 
 									<tr>
 										<th class="text-center">#</th>
-										<th>Order number</th>
-										<th>User name</th>
-										<th>Discount code</th>
-										<th>Commission</th>
-										<th>Action</th>
+										<th>{{ __('messages.order-number') }}</th>
+										<th>{{ __('messages.user-name') }}</th>
+										<th>{{ __('messages.discount-code') }}</th>
+										<th>{{ __('messages.commission') }}</th>
+										<th>{{ __('messages.action') }}</th>
 									</tr>
 									</thead>
 									<tbody>

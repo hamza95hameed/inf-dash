@@ -16,5 +16,11 @@
         "zip-code" => "Code postal",
         "iban" => "IBAN",
         "address" => "Adresse",
-        "current-balance" => "Commission disponible"
+        "current-balance" => "Commission disponible",
+        "total-commission" => "Total commission",
+        "order-number" => "Commande",
+        "user-name" => "Commande",
+        "discount-code" => "Code promo",
+        "commission" => "Commission",
+        "action"=> "Action",
     ];

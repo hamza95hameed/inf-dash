@@ -11,16 +11,22 @@
                     $ordersCount = count($orders);
                 @endphp
                 @component('components.statistics.index')
+                    @slot('color') B89270 @endslot
+                    @slot('icon') fas fa-cart-plus @endslot
                     @slot('title') Total orders @endslot
                     @slot('count') {{ $ordersCount }} @endslot
                 @endcomponent
                 @if (auth()->user()->is_admin == 0)
                     @component('components.statistics.index')
+                        @slot('color') B89270 @endslot
+                        @slot('icon') fas fa-balance-scale @endslot
                         @slot('title') {{ __('messages.current-balance') }} @endslot
                         @slot('count') {{ @$current_balance }} @endslot
                     @endcomponent
                     @component('components.statistics.index')
-                        @slot('title') Total earning @endslot
+                        @slot('color') B89270 @endslot
+                        @slot('icon') fas fa-euro-sign @endslot
+                        @slot('title') {{ __('messages.total-commission') }} @endslot
                         @slot('count') {{ @$total_earning }} @endslot
                     @endcomponent                    
                 @endif

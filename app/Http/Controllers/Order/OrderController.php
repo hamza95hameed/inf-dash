@@ -110,24 +110,36 @@ class OrderController extends Controller
         // Compare the computed HMAC with the received HMAC
         if (hash_equals($receivedHmac, $computedHmac)) {
 
-            $data          = json_decode($webhookPayload,true);
-            $discount_code = $data['discount_codes'][0]['code'];
+            $data     = json_decode($webhookPayload,true);
+            $order_no = $data['order_number'];
+            $code     = $data['discount_codes'][0]['code'];
+            $discount = Discount::where('name', $code)->first();   
 
-            if($discount_code){
-                $discount   = Discount::where('name', $discount_code)->first();
+            if($discount){
+                $order = Order::where('order_no', $order_no)
+                    ->where('discount_id', $discount->id)
+                    ->where('user_id', $discount->user_id)
+                ->first();
+                
                 $commission = ($discount->user->commission / 100) * $data['total_price'];
-
-                Order::create([
-                    'order_no'    => $data['order_number'],
-                    'discount_id' => $discount->id,
-                    'user_id'     => $discount->user_id,
-                    'commission'  => $commission
-                ]);
-
+                if($order){
+                    $order->update([
+                        'commission'=> $commission
+                    ]);
+                }
+                else{
+                    Order::create([
+                        'order_no'    => $order_no,
+                        'discount_id' => $discount->id,
+                        'user_id'     => $discount->user_id,
+                        'commission'  => $commission
+                    ]);
+                }
+    
                 $user            = User::where('id',$discount->user_id)->first();
                 $current_balance = $user->current_balance + $commission;
                 $total_earning   = $user->total_earning + $commission;
-
+    
                 $user->update([
                     'total_earning'   => $total_earning,
                     'current_balance' => $current_balance
@@ -141,6 +153,5 @@ class OrderController extends Controller
             // Respond with an error status (optional)
             return response()->json(['error' => 'Invalid webhook request. Authentication failed.'], 401);
         }
-        
     }
 }
