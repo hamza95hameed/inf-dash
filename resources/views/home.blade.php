@@ -13,7 +13,7 @@
                 @component('components.statistics.index')
                     @slot('color') B89270 @endslot
                     @slot('icon') fas fa-cart-plus @endslot
-                    @slot('title') Total orders @endslot
+                    @slot('title') {{ __('messages.total-order') }} @endslot
                     @slot('count') {{ $ordersCount }} @endslot
                 @endcomponent
                 @if (auth()->user()->is_admin == 0)
@@ -21,20 +21,20 @@
                         @slot('color') B89270 @endslot
                         @slot('icon') fas fa-balance-scale @endslot
                         @slot('title') {{ __('messages.current-balance') }} @endslot
-                        @slot('count') {{ @$current_balance }} @endslot
+                        @slot('count') {{ @$current_balance }}€ @endslot
                     @endcomponent
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot
                         @slot('icon') fas fa-euro-sign @endslot
                         @slot('title') {{ __('messages.total-commission') }} @endslot
-                        @slot('count') {{ @$total_earning }} @endslot
+                        @slot('count') {{ @$total_earning }}€ @endslot
                     @endcomponent                    
                 @endif
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Top 5 orders</h4>
+                        <h4>Top orders</h4>
                     </div>
                     <div class="card-body">
                         @if ($orders)

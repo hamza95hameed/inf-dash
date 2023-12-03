@@ -19,8 +19,11 @@
         "current-balance" => "Commission disponible",
         "total-commission" => "Total commission",
         "order-number" => "Commande",
-        "user-name" => "Commande",
+        "user-name" => "Utilisateur",
         "discount-code" => "Code promo",
         "commission" => "Commission",
         "action"=> "Action",
+        "order" => "Commande",
+        "dashboard" => "Dashboard",
+        "total-order" => "Total commande"
     ];

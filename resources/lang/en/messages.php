@@ -23,5 +23,7 @@
         "discount-code" => "Discount code",
         "commission" => "Commission",
         "action"=> "Action",
-
+        "order" => "Order",
+        "dashboard" => "Dashboard",
+        "total-order" => "Total orders"
     ];

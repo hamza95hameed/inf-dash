@@ -121,7 +121,7 @@ class OrderController extends Controller
                     ->where('user_id', $discount->user_id)
                 ->first();
                 
-                $commission = ($discount->user->commission / 100) * $data['total_price'];
+                $commission = ($discount->user->commission / 100) * $data['total_line_items_price'];
                 if($order){
                     $order->update([
                         'commission'=> $commission
