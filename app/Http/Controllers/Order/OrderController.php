@@ -124,7 +124,7 @@ class OrderController extends Controller
                 $commission = ($discount->user->commission / 100) * $data['total_line_items_price'];
                 if($order){
                     $order->update([
-                        'commission'=> $commission
+                        'commission'=> $commission + $order->commission
                     ]);
                 }
                 else{
