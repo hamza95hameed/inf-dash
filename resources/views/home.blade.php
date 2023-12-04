@@ -16,6 +16,7 @@
                     @slot('title') {{ __('messages.total-order') }} @endslot
                     @slot('count') {{ $ordersCount }} @endslot
                 @endcomponent
+                @component('components.charts.doughnuts')@endcomponent
                 @if (auth()->user()->is_admin == 0)
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot

@@ -154,4 +154,33 @@ class OrderController extends Controller
             return response()->json(['error' => 'Invalid webhook request. Authentication failed.'], 401);
         }
     }
+
+    public function ordersChart(Request $request){
+        
+        $start = $request->start . ' 00:00:00'; 
+        $end   = $request->end   . ' 23:59:59'; 
+
+        $orders = Order::whereBetween('created_at', [$start, $end])
+            ->selectRaw('DAYOFWEEK(created_at) as created_day, COUNT(*) as count')
+            ->groupBy('created_day')
+        ->get();
+
+        $days = [
+            1 => 'Sunday',
+            2 => 'Monday',
+            3 => 'Tuesday',
+            4 => 'Wednesday',
+            5 => 'Thursday',
+            6 => 'Friday',
+            7 => 'Saturday',
+        ];
+
+        $data = $orders->mapWithKeys(function ($order) use ($days) {
+            return [
+                $days[$order->created_day] => $order->count
+            ];
+        })->toArray();
+        
+        return response()->json(['status' => true, 'data' => $data]);
+    }
 }

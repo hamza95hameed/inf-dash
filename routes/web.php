@@ -31,4 +31,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('discounts', DiscountController::class);
     Route::resource('orders', OrderController::class);
+    Route::post('orders-chart', [OrderController::class, 'ordersChart'])->name('orders.chart');
 });
