@@ -160,10 +160,15 @@ class OrderController extends Controller
         $start = $request->start . ' 00:00:00'; 
         $end   = $request->end   . ' 23:59:59'; 
 
-        $orders = Order::whereBetween('created_at', [$start, $end])
+        $query = Order::whereBetween('created_at', [$start, $end])
             ->selectRaw('DAYOFWEEK(created_at) as created_day, COUNT(*) as count')
-            ->groupBy('created_day')
-        ->get();
+            ->groupBy('created_day');
+    
+        if(auth()->user()->is_admin == 0){
+            $query = $query->where('user_id');
+        }
+        
+        $orders = $query->get();
 
         $days = [
             1 => 'Sunday',
