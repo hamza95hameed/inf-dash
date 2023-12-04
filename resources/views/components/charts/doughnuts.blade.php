@@ -2,14 +2,14 @@
     <div class="card-header">
         <h4>Orders by days</h4>
         <div class="card-header-action dropdown">
-            <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">7J</a>
+            <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle filterDate">7J</a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                 <li class="dropdown-title">Select Period</li>
-                <li><a href="javascript:void(0)" data-start="{{ date('Y-m-d') }}" data-end="{{ date('Y-m-d', strtotime('-7 days')) }}" class="duration dropdown-item active">7J</a></li>
-                <li><a href="javascript:void(0)" data-start="{{ date('Y-m-d') }}" data-end="{{ date('Y-m-d', strtotime('-15 days')) }}" class="duration dropdown-item">15J</a></li>
-                <li><a href="javascript:void(0)" data-start="{{ date('Y-m-d') }}" data-end="{{ date('Y-m-d', strtotime('-30 days')) }}" class="duration dropdown-item">1M</a></li>
-                <li><a href="javascript:void(0)" data-start="{{ date('Y-m-d') }}" data-end="{{ date('Y-m-d', strtotime('-180 days')) }}" class="duration dropdown-item">6M</a></li>
-                <li><a href="javascript:void(0)" data-start="{{ date('Y-m-d') }}" data-end="{{ date('Y-01-01') }}" class="duration dropdown-item">YTD</a></li>
+                <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-7 days')) }}" class="duration dropdown-item active">7J</a></li>
+                <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-15 days')) }}" class="duration dropdown-item">15J</a></li>
+                <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-30 days')) }}" class="duration dropdown-item">1M</a></li>
+                <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-180 days')) }}" class="duration dropdown-item">6M</a></li>
+                <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-01-01') }}" class="duration dropdown-item">YTD</a></li>
             </ul>
         </div>
     </div>
@@ -26,7 +26,7 @@
             let end   = $(this).attr('data-end');
             let text  = $(this).text();
 
-            $('.dropdown-toggle').text(text)
+            $('.filterDate').text(text)
             $('.duration').removeClass('active');
             $(this).addClass('active');
 
