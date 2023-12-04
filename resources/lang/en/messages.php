@@ -25,5 +25,7 @@
         "action"=> "Action",
         "order" => "Order",
         "dashboard" => "Dashboard",
-        "total-order" => "Total orders"
+        "total-order" => "Total orders",
+        "forgot-password" => "Forgot Password",
+        "we-will-send-a-link-to-reset-your-password" => "We will send a link to reset your password"
     ];

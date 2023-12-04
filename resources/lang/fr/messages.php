@@ -25,5 +25,7 @@
         "action"=> "Action",
         "order" => "Commande",
         "dashboard" => "Dashboard",
-        "total-order" => "Total commande"
+        "total-order" => "Total commande",
+        "forgot-password" => "Forgot Password",
+        "we-will-send-a-link-to-reset-your-password" => "We will send a link to reset your password"
     ];
