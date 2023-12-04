@@ -20,7 +20,11 @@
 @push('script')
     <script src="{{ asset('assets/modules/chart.min.js') }}"></script>
     <script>
-       
+
+        let start = $('.duration.active').attr('data-start');
+        let end   = $('.duration.active').attr('data-end');
+        ordersChartByAjax(start, end)
+
         $(document).on('click', '.duration', function(){
             let start = $(this).attr('data-start');
             let end   = $(this).attr('data-end');
@@ -30,6 +34,10 @@
             $('.duration').removeClass('active');
             $(this).addClass('active');
 
+            ordersChartByAjax (start, end)
+        })
+
+        function ordersChartByAjax (start, end) {  
             $.ajax({
                 type: "POST",
                 url: "{{ route('orders.chart') }}",
@@ -40,8 +48,7 @@
                     doughnuts(labels, data)
                 }
             });
-        })
-
+        }
 
         function doughnuts(labels, data){
             var ctx = document.getElementById("myChart3").getContext('2d');
