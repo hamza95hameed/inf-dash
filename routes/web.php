@@ -6,6 +6,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Language\LanguageController;
+use App\Http\Controllers\Withdraw\WithdrawController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('discounts', DiscountController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('withdraws', WithdrawController::class);
     Route::post('orders-chart', [OrderController::class, 'ordersChart'])->name('orders.chart');
 });
