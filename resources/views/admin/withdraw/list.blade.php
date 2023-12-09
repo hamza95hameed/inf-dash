@@ -30,13 +30,14 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-striped" id="discount-list-datatable">
+								<table class="table table-striped" id="withdraw-list-datatable">
 								<thead>                                 
 									<tr>
 										<th class="text-center">#</th>
 										<th>Status</th>
 										<th>Amount</th>
 										<th>User</th>
+										<th>Created</th>
 										<th>Action</th>
 									</tr>
 									</thead>
@@ -47,6 +48,7 @@
 												<td>{{ $withdraw->status }}</td>								
 												<td>{{ $withdraw->amount }}</td>							
 												<td>{{ $withdraw->user->name }}</td>								
+												<td>{{ date('Y-m-d', strtotime($withdraw->created_at)) }}</td>								
 												<td>
 													<a href="{{ route('withdraws.edit', $withdraw->id) }}"><i class="fas fa-pen"></i></a>  
 													<a href="{{ route('withdraws.show', $withdraw->id) }}"><i class="fas fa-eye"></i></a>  
@@ -69,15 +71,7 @@
 	<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
-			$('#discount-list-datatable').dataTable({
-				"columnDefs": [
-					{
-						"targets": 4,
-						"orderable": false
-					}
-				]
-			});
-
+			$('#withdraw-list-datatable').dataTable();
 		});
 	</script>
 @endpush

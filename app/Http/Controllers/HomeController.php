@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Withdraw;
 
 class HomeController extends Controller
 {
@@ -37,6 +38,8 @@ class HomeController extends Controller
         $orders   = $query->get();
         $orderSum = $query->sum('commission');
 
-        return view('home', compact('orders', 'total_earning', 'current_balance', 'orderSum'));
+        $withdrawCount = Withdraw::where('status','pending')->count();
+
+        return view('home', compact('orders', 'total_earning', 'current_balance', 'orderSum', 'withdrawCount'));
     }
 }

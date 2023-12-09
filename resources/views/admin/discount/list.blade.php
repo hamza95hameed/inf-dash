@@ -38,7 +38,10 @@
 										<th>Amount</th>
 										<th>Type</th>
 										<th>User</th>
-										<th>Action</th>
+										<th>Created</th>
+										@if (auth()->user()->is_admin == 1)
+											<th>Action</th>											
+										@endif
 									</tr>
 									</thead>
 									<tbody>
@@ -48,11 +51,14 @@
 												<td>{{ $discount->name }}</td>								
 												<td>{{ $discount->amount }}</td>								
 												<td>{{ $discount->type }}</td>								
-												<td>{{ $discount->user->name }}</td>								
-												<td>
-													<a href="{{ route('discounts.edit', $discount->id) }}"><i class="fas fa-pen"></i></a>  
-													<a href="{{ route('discounts.show', $discount->id) }}"><i class="fas fa-eye"></i></a>  
-												</td>	
+												<td>{{ $discount->user->name }}</td>	
+												<td>{{ date('Y-m-d', strtotime($discount->created_at)) }}</td>	
+												@if (auth()->user()->is_admin == 1)
+													<td>
+														<a href="{{ route('discounts.edit', $discount->id) }}"><i class="fas fa-pen"></i></a>  
+														<a href="{{ route('discounts.show', $discount->id) }}"><i class="fas fa-eye"></i></a>  
+													</td>	
+												@endif							
 											</tr>										
 										@endforeach                              
 									</tbody>
@@ -71,15 +77,7 @@
 	<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
-			$('#discount-list-datatable').dataTable({
-				"columnDefs": [
-					{
-						"targets": 5,
-						"orderable": false
-					}
-				]
-			});
-
+			$('#discount-list-datatable').dataTable();
 		});
 	</script>
 @endpush

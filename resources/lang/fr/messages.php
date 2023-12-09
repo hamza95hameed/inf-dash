@@ -27,5 +27,7 @@
         "dashboard" => "Dashboard",
         "total-order" => "Total commande",
         "forgot-password" => "Forgot Password",
-        "we-will-send-a-link-to-reset-your-password" => "We will send a link to reset your password"
+        "we-will-send-a-link-to-reset-your-password" => "We will send a link to reset your password",
+        "withdraw-request" => 'Withdraw request',
+        'withdraw-error' => 'You current balance is less than 10€'
     ];

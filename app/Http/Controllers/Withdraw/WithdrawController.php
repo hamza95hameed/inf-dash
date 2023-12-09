@@ -49,35 +49,30 @@ class WithdrawController extends Controller
     { 
         $user = auth()->user();
 
-        request()->validate([
-            "amount" => "required|numeric|min:10|max:withdraw.amount",
-        ],
-        [
-            'amount.max' => 'Your current balance is '. $user->current_balance
-        ]);
-        
+        if($user->is_admin == 0 && $user->current_balance > 10){
 
-        $withdraw = Withdraw::create([
-            'user_id' => $user->id,
-            'amount'  => $request->amount,
-            'status'  => 'pending',
-        ]);
-
-        $current_balance = $user->current_balance - $withdraw->amount;
-        $total_withdraw  = $user->total_withdraw + $withdraw->amount;
-
-        $user->update([
-            'current_balance' => $current_balance,
-            'total_withdraw'  => $total_withdraw
-        ]);
-   
-        $details = [
-            'name'   => $user->name,
-            'amount' => $withdraw->amount,
-            'iban'   => $user->iban,
-        ];
+            $withdraw = Withdraw::create([
+                'user_id' => $user->id,
+                'amount'  => $user->current_balance,
+                'status'  => 'pending',
+            ]);
+    
+            $current_balance = $user->current_balance - $withdraw->amount;
+            $total_withdraw  = $user->total_withdraw + $withdraw->amount;
+    
+            $user->update([
+                'current_balance' => $current_balance,
+                'total_withdraw'  => $total_withdraw
+            ]);
        
-        Mail::to($user->email)->send(new WithdrawMail($details));
+            $details = [
+                'name'   => $user->name,
+                'amount' => $withdraw->amount,
+                'iban'   => $user->iban,
+            ];
+           
+            Mail::to($user->email)->send(new WithdrawMail($details));
+        }
 
         return redirect()->route("withdraws.index")->with("success","Withdraw request created successfully");
     }

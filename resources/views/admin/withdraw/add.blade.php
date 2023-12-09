@@ -14,21 +14,23 @@
             </div>
         </div>
         <div id="output-status">
-			@if ( $user->current_balance < 10 )
-				<div class="alert alert-danger alert-dismissible show fade">
-					<div class="alert-body">
-						<button class="close" data-dismiss="alert"><span>×</span></button>
-						{{ __('messages.withdraw-error') }}
-					</div>
-				</div>
-			@endif
-		</div>
+            @if ($user->current_balance < 10)
+                <div class="alert alert-danger alert-dismissible show fade">
+                    <div class="alert-body">
+                        <button class="close" data-dismiss="alert"><span>×</span></button>
+                        {{ __('messages.withdraw-error') }}
+                    </div>
+                </div>
+            @endif
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <form action="{{ route('withdraws.store') }}" method="POST">
-                            @csrf
+                            @if ($user->current_balance > 10)
+                                @csrf
+                            @endif
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -38,7 +40,7 @@
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </div>
-                                        @enderror     
+                                        @enderror
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="amount">Amount</label>
@@ -47,29 +49,28 @@
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </div>
-                                        @enderror  
+                                        @enderror
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="iban">IBAN</label>
-                                        <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban', $user->iban) }}" name="iban" placeholder="IBAN">
+                                        <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban', $user->iban) }}" name="iban" placeholder="IBAN" readonly>
                                         @error('iban')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </div>
-                                        @enderror  
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Withdraw</button>
+                                @if ($user->current_balance > 10)
+                                    <button type="submit" class="btn btn-primary">Withdraw</button> 
+                                @endif
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 @endsection
-
-@push('script')
-    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-@endpush

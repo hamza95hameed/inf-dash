@@ -17,13 +17,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user   = auth()->user();
-        $orders = '';
+        $user  = auth()->user();
+        $query = Order::with(['user','discount']); 
+
         if($user->is_admin == 1){
-            $orders = Order::all();
-        }else{
-            $orders = Order::where('user_id', $user->id)->get();
+            $query = $query->where('user_id', $user->id);
         }
+        
+        $orders = $query->get();
 
         return view("admin.order.list", compact("orders"));
     }
@@ -159,13 +160,14 @@ class OrderController extends Controller
         
         $start = $request->start . ' 00:00:00'; 
         $end   = $request->end   . ' 23:59:59'; 
+        $user  = auth()->user();
 
         $query = Order::whereBetween('created_at', [$start, $end])
             ->selectRaw('DAYOFWEEK(created_at) as created_day, COUNT(*) as count')
             ->groupBy('created_day');
     
-        if(auth()->user()->is_admin == 0){
-            $query = $query->where('user_id');
+        if($user->is_admin == 0){
+            $query = $query->where('user_id', $user->id);
         }
         
         $orders = $query->get();

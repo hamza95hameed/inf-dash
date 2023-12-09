@@ -17,7 +17,15 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discounts = Discount::with('user')->get();
+        $user  = auth()->user();
+        $query = Discount::with('user');
+        
+        if($user->is_admin == 0){
+            $query = $query->where('user_id', $user->id);
+        }
+
+        $discounts = $query->get();
+        
         return view("admin.discount.list", compact("discounts"));
     }
 

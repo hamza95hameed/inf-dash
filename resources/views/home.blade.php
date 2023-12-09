@@ -16,6 +16,20 @@
                     @slot('title') {{ __('messages.total-order') }} @endslot
                     @slot('count') {{ $ordersCount }} @endslot
                 @endcomponent
+                @if (auth()->user()->is_admin == 1)
+                    @component('components.statistics.index')
+                        @slot('color') B89270 @endslot
+                        @slot('icon') fas fa-euro-sign @endslot
+                        @slot('title') {{ __('messages.total-commission') }} @endslot
+                        @slot('count') {{ @$orderSum }}€ @endslot
+                    @endcomponent    
+                    @component('components.statistics.index')
+                        @slot('color') B89270 @endslot
+                        @slot('icon') fas fa-euro-sign @endslot
+                        @slot('title') {{ __('messages.withdraw-request') }} @endslot
+                        @slot('count') {{ @$withdrawCount }}€ @endslot
+                    @endcomponent    
+                @endif
                 @if (auth()->user()->is_admin == 0)
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot

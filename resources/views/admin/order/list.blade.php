@@ -38,6 +38,7 @@
 										<th>{{ __('messages.user-name') }}</th>
 										<th>{{ __('messages.discount-code') }}</th>
 										<th>{{ __('messages.commission') }}</th>
+										<th>{{ __('messages.created') }}</th>
 										<th>{{ __('messages.action') }}</th>
 									</tr>
 									</thead>
@@ -48,7 +49,8 @@
 												<td>{{ $order->order_no }}</td>								
 												<td>{{ $order->user->name }}</td>								
 												<td>{{ $order->discount->name }}</td>								
-												<td>{{ $order->commission }}</td>							
+												<td>{{ $order->commission }}</td>	
+												<td>{{ date('Y-m-d', strtotime($order->created_at)) }}</td>							
 												<td>
 													<a href="{{ route('orders.show', $order->id) }}"><i class="fas fa-eye"></i></a>  
 												</td>	
@@ -70,15 +72,7 @@
 	<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
-			$('#order-list-datatable').dataTable({
-				"columnDefs": [
-					{
-						"targets": 5,
-						"orderable": false
-					}
-				]
-			});
-
+			$('#order-list-datatable').dataTable();
 		});
 	</script>
 @endpush

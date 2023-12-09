@@ -39,6 +39,7 @@
 										<th>Email</th>
 										<th>Commission</th> 
 										<th>IBAN</th> 
+										<th>Created</th> 
 										<th>Action</th>
 									</tr>
 									</thead>
@@ -51,6 +52,7 @@
 												<td>{{ $user->email }}</td>								
 												<td>{{ $user->commission }}%</td>								
 												<td>{{ $user->iban }}</td>								
+												<td>{{ date('Y-m-d', strtotime($user->created_at)) }}</td>								
 												<td>
 													<a href="{{ route('users.edit', $user->id) }}"><i class="fas fa-pen"></i></a>  
 													<a href="{{ route('users.show', $user->id) }}"><i class="fas fa-eye"></i></a>  
@@ -73,15 +75,7 @@
 	<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
-			$('#user-list-datatable').dataTable({
-				"columnDefs": [
-					{
-						"targets": 6,
-						"orderable": false
-					}
-				]
-			});
-
+			$('#user-list-datatable').dataTable();
 		});
 	</script>
 @endpush

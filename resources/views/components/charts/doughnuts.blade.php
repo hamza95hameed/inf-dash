@@ -2,7 +2,7 @@
     <div class="card-header">
         <h4>Orders by days</h4>
         <div class="card-header-action dropdown">
-            <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle filterDate">7J</a>
+            <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle text-white filterDate" style="background: #B89270">7J</a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                 <li class="dropdown-title">Select Period</li>
                 <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-7 days')) }}" class="duration dropdown-item active">7J</a></li>
@@ -58,13 +58,13 @@
                     datasets: [{
                         data: data,
                         backgroundColor: [
-                            '#191d21',
-                            '#63ed7a',
-                            '#ffa426',
-                            '#fc744b',
-                            '#fc244b',
-                            '#fc544b',
-                            '#6777ef',
+                            '#000000',
+                            '#123edd',
+                            '#b89270',
+                            '#8a9f80',
+                            '#ebe6da',
+                            '#f4ddac',
+                            '#f3b372',
                         ],
                         label: 'Dataset 1'
                     }],

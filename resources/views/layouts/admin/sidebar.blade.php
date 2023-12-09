@@ -41,6 +41,12 @@
                 </li>
             @endunless
             @unless (auth()->user()->is_admin == 1)
+                <li class="dropdown {{ request()->segment(1) == 'discounts' ? 'active': ''}}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Discounts</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('discounts.index') }}">List</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Orders</span></a>
                     <ul class="dropdown-menu">
