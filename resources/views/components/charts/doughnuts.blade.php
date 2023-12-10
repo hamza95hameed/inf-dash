@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4>Orders by days</h4>
+        <h4>{{ __('messages.orders-by-days') }}</h4>
         <div class="card-header-action dropdown">
             <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle text-white filterDate" style="background: #B89270">7J</a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">

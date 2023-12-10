@@ -71,7 +71,7 @@ class WithdrawController extends Controller
                 'iban'   => $user->iban,
             ];
            
-            Mail::to($user->email)->send(new WithdrawMail($details));
+            Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($details));
         }
 
         return redirect()->route("withdraws.index")->with("success","Withdraw request created successfully");
@@ -108,7 +108,14 @@ class WithdrawController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $withdraw = Withdraw::find($id);
+
+        $withdraw->update([
+            'status' => 'complete',
+            'completed_at' =>  date('Y-m-d H:i:s'),
+        ]);
+
+        return response()->json(true, 200);
     }
 
     /**

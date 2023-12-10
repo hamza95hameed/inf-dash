@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Discount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 
 class OrderController extends Controller
 {
@@ -20,7 +22,7 @@ class OrderController extends Controller
         $user  = auth()->user();
         $query = Order::with(['user','discount']); 
 
-        if($user->is_admin == 1){
+        if($user->is_admin == 0){
             $query = $query->where('user_id', $user->id);
         }
         
@@ -111,10 +113,11 @@ class OrderController extends Controller
         // Compare the computed HMAC with the received HMAC
         if (hash_equals($receivedHmac, $computedHmac)) {
 
-            $data     = json_decode($webhookPayload,true);
-            $order_no = $data['order_number'];
-            $code     = $data['discount_codes'][0]['code'];
-            $discount = Discount::where('name', $code)->first();   
+            $data       = json_decode($webhookPayload,true);
+            $order_no   = $data['order_number'];
+            $code       = $data['discount_codes'][0]['code'];
+            $created_at = $data['created_at'];
+            $discount   = Discount::where('name', $code)->first();   
 
             if($discount){
                 $order = Order::where('order_no', $order_no)
@@ -130,14 +133,15 @@ class OrderController extends Controller
                 }
                 else{
                     Order::create([
-                        'order_no'    => $order_no,
-                        'discount_id' => $discount->id,
-                        'user_id'     => $discount->user_id,
-                        'commission'  => $commission
+                        'order_no'         => $order_no,
+                        'discount_id'      => $discount->id,
+                        'user_id'          => $discount->user_id,
+                        'commission'       => $commission,
+                        'order_created_at' => $created_at,
                     ]);
                 }
     
-                $user            = User::where('id',$discount->user_id)->first();
+                $user            = User::where('id', $discount->user_id)->first();
                 $current_balance = $user->current_balance + $commission;
                 $total_earning   = $user->total_earning + $commission;
     
@@ -145,6 +149,15 @@ class OrderController extends Controller
                     'total_earning'   => $total_earning,
                     'current_balance' => $current_balance
                 ]);
+
+                $details = [
+                    'name'       => $user->name,
+                    'commission' => $commission,
+                    'order_no'   => $order_no,
+                    'created_at' => $created_at
+                ];
+
+                Mail::to($user->email)->send(new OrderMail($details));
             }
 
             // Respond with a success status (optional)
@@ -162,8 +175,8 @@ class OrderController extends Controller
         $end   = $request->end   . ' 23:59:59'; 
         $user  = auth()->user();
 
-        $query = Order::whereBetween('created_at', [$start, $end])
-            ->selectRaw('DAYOFWEEK(created_at) as created_day, COUNT(*) as count')
+        $query = Order::whereBetween('order_created_at', [$start, $end])
+            ->selectRaw('DAYOFWEEK(order_created_at) as created_day, COUNT(*) as count')
             ->groupBy('created_day');
     
         if($user->is_admin == 0){
@@ -173,13 +186,13 @@ class OrderController extends Controller
         $orders = $query->get();
 
         $days = [
-            1 => 'Sunday',
-            2 => 'Monday',
-            3 => 'Tuesday',
-            4 => 'Wednesday',
-            5 => 'Thursday',
-            6 => 'Friday',
-            7 => 'Saturday',
+            1 => __('messages.sunday'),
+            2 => __('messages.monday'),
+            3 => __('messages.tuesday'),
+            4 => __('messages.wednesday'),
+            5 => __('messages.thursday'),
+            6 => __('messages.friday'),
+            7 => __('messages.saturday'),
         ];
 
         $data = $orders->mapWithKeys(function ($order) use ($days) {

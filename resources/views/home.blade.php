@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Dashboard</h1>
+            <h1>{{ __('messages.dashboard') }}</h1>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -26,8 +26,14 @@
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot
                         @slot('icon') fas fa-euro-sign @endslot
+                        @slot('title') {{ __('messages.unpaid-balance') }} @endslot
+                        @slot('count') {{ @$all_users_balance }}€ @endslot
+                    @endcomponent    
+                    @component('components.statistics.index')
+                        @slot('color') B89270 @endslot
+                        @slot('icon') fas fa-euro-sign @endslot
                         @slot('title') {{ __('messages.withdraw-request') }} @endslot
-                        @slot('count') {{ @$withdrawCount }}€ @endslot
+                        @slot('count') {{ @$withdrawCount }} @endslot
                     @endcomponent    
                 @endif
                 @if (auth()->user()->is_admin == 0)

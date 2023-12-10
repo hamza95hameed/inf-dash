@@ -7,10 +7,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create withdraw</h1>
+            <h1>{{ __('messages.create-withdraw') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="/dashboard">Dashboard</a></div>
-                <div class="breadcrumb-item">Withdraw</div>
+                <div class="breadcrumb-item active"><a href="/dashboard">{{ __('messages.dashboard') }}</a></div>
+                <div class="breadcrumb-item">{{ __('messages.withdraw') }}</div>
             </div>
         </div>
         <div id="output-status">
@@ -34,8 +34,8 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="name">Withdraw name</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $user->name) }}" name="name" placeholder="Withdraw name" readonly>
+                                        <label for="name">{{ __('messages.name') }}</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $user->name) }}" name="name" readonly>
                                         @error('name')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -43,8 +43,8 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="amount">Amount</label>
-                                        <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount" value="{{ $user->current_balance }}" name="amount" placeholder="Amount" readonly>
+                                        <label for="amount">{{ __('messages.amount') }}</label>
+                                        <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount" value="{{ $user->current_balance }}" name="amount" readonly>
                                         @error('amount')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -52,8 +52,8 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="iban">IBAN</label>
-                                        <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban', $user->iban) }}" name="iban" placeholder="IBAN" readonly>
+                                        <label for="iban">{{ __('messages.iban') }}</label>
+                                        <input type="text" class="form-control @error('iban') is-invalid @enderror" id="iban" value="{{ old('iban', $user->iban) }}" name="iban" readonly>
                                         @error('iban')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="card-footer">
                                 @if ($user->current_balance > 10)
-                                    <button type="submit" class="btn btn-primary">Withdraw</button> 
+                                    <button type="submit" class="btn btn-primary">{{ __('messages.submit') }}</button> 
                                 @endif
                             </div>
                         </form>

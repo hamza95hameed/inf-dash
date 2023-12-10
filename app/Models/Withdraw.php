@@ -13,6 +13,7 @@ class Withdraw extends Model
         'user_id',
         'amount',
         'status',
+        'completed_at'
     ];
 
      /**

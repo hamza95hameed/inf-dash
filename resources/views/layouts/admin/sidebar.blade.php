@@ -9,55 +9,55 @@
         <ul class="sidebar-menu">
             <li class="{{ request()->segment(1) == 'dashboard' ? 'active': ''}}">
                 <a class="nav-link" href="/dashboard">
-                    <span>Dashboard</span>
+                    <span>{{ __('messages.dashboard') }}</span>
                 </a>
             </li>
             @unless (auth()->user()->is_admin == 0)                
                 <li class="dropdown {{ request()->segment(1) == 'users' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i><span>Users</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i><span>{{ __('messages.users') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('users.index') }}">List</a></li>
-                        <li><a class="nav-link" href="{{ route('users.create') }}">Add</a></li>
+                        <li><a class="nav-link" href="{{ route('users.index') }}">{{ __('messages.list') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('users.create') }}">{{ __('messages.add')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'discounts' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Discounts</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.discounts') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('discounts.index') }}">List</a></li>
-                        <li><a class="nav-link" href="{{ route('discounts.create') }}">Add</a></li>
+                        <li><a class="nav-link" href="{{ route('discounts.index') }}">{{ __('messages.list') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('discounts.create') }}">{{ __('messages.add')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Orders</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.orders') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('orders.index') }}">List</a></li>
+                        <li><a class="nav-link" href="{{ route('orders.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'withdraws' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Withdraws</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.withdraws') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">List</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
             @endunless
             @unless (auth()->user()->is_admin == 1)
                 <li class="dropdown {{ request()->segment(1) == 'discounts' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Discounts</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.discounts') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('discounts.index') }}">List</a></li>
+                        <li><a class="nav-link" href="{{ route('discounts.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Orders</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.orders') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('orders.index') }}">List</a></li>
+                        <li><a class="nav-link" href="{{ route('orders.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'withdraws' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>Withdraws</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.withdraws') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">List</a></li>
-                        <li><a class="nav-link" href="{{ route('withdraws.create') }}">Add</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.list') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.create') }}">{{ __('messages.add')}}</a></li>
                     </ul>
                 </li>
             @endunless

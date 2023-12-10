@@ -14,6 +14,7 @@ class Order extends Model
         'user_id',
         'discount_id',
         'commission',
+        'order_created_at'
     ];
     
     /**

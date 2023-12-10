@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WithdrawMail extends Mailable
+class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
@@ -29,6 +29,6 @@ class WithdrawMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(__('messages.withdraw-request'))->view('emails.withdraw');
+        return $this->subject(__('messages.new-order'))->view('emails.order');
     }
 }

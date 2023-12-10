@@ -7,10 +7,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Edit Discount</h1>
+            <h1>{{ __('messages.edit-discount') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="/dashboard">Dashboard</a></div>
-                <div class="breadcrumb-item">Discount</div>
+                <div class="breadcrumb-item active"><a href="/dashboard">{{ __('messages.dashboard') }}</a></div>
+                <div class="breadcrumb-item">{{ __('messages.discounts') }}</div>
             </div>
         </div>
 
@@ -24,8 +24,8 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="name">Discount name</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $discount->name) }}" name="name" placeholder="Discount name">
+                                        <label for="name">{{ __('messages.name') }}</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $discount->name) }}" name="name" placeholder="{{ __('messages.name') }}">
                                         @error('name')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -33,8 +33,8 @@
                                         @enderror     
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="amount">Amount</label>
-                                        <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount" value="{{ old('amount', $discount->amount) }}" name="amount" placeholder="Amount">
+                                        <label for="amount">{{ __('messages.amount') }}</label>
+                                        <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount" value="{{ old('amount', $discount->amount) }}" name="amount" placeholder="{{ __('messages.amount') }}">
                                         @error('amount')
                                             <div class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -42,11 +42,11 @@
                                         @enderror  
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="type">Type</label>
+                                        <label for="type">{{ __('messages.type') }}</label>
                                         <select name="type" class="form-control @error('type') is-invalid @enderror" id="type">
-                                            <option value="">Select type</option>
-                                            <option value="fixed" {{ $discount->type == 'fixed' ? 'selected':''}}>Fixed</option>
-                                            <option value="percentage" {{ $discount->type == 'percentage' ? 'selected':''}}>Percentage</option>
+                                            <option value="">{{ __('messages.select-type') }}</option>
+                                            <option value="fixed" {{ $discount->type == 'fixed' ? 'selected':''}}>{{ __('messages.fixed') }}</option>
+                                            <option value="percentage" {{ $discount->type == 'percentage' ? 'selected':''}}>{{ __('messages.percentage') }}</option>
                                         </select>
                                         @error('type')
                                             <div class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">{{ __('messages.submit') }}</button>
                             </div>
                         </form>
                     </div>

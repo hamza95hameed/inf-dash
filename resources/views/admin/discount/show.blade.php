@@ -3,9 +3,9 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Discount Detail</h1>
+            <h1>{{ __('messages.discount-details') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="/dashboard">Dashboard</a></div>
+                <div class="breadcrumb-item active"><a href="/dashboard">{{ __('messages.dashboard') }}</a></div>
                 <div class="breadcrumb-item">{{ $discount->name }}</div>
             </div>
         </div>
@@ -17,19 +17,19 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">Discount name</label>
-                                    <input type="text" class="form-control" readonly id="name" value="{{ $discount->name }}" name="name" placeholder="Discount name">    
+                                    <label for="name">{{ __('messages.name') }}</label>
+                                    <input type="text" class="form-control" readonly id="name" value="{{ $discount->name }}" name="name">    
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" readonly id="amount" value="{{ $discount->amount }}" name="amount" placeholder="Amount"> 
+                                    <label for="amount">{{ __('messages.amount') }}</label>
+                                    <input type="text" class="form-control" readonly id="amount" value="{{ $discount->amount }}" name="amount"> 
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="type">Type</label>
+                                    <label for="type">{{ __('messages.type') }}</label>
                                     <input type="text" class="form-control" name="type" readonly id="type" value="{{ $discount->type }}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="user">User</label>
+                                    <label for="user">{{ __('messages.user') }}</label>
                                     <input type="text" class="form-control" name="user" readonly id="user" value="{{ $discount->user->name }}"> 
                                 </div>
                             </div>
