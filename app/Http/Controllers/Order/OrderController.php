@@ -9,6 +9,7 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -117,6 +118,7 @@ class OrderController extends Controller
             $order_no   = $data['order_number'];
             $code       = $data['discount_codes'][0]['code'];
             $created_at = $data['created_at'];
+            $created_at = Carbon::parse($created_at)->format('Y-m-d H:i:s');
             $discount   = Discount::where('name', $code)->first();   
 
             if($discount){

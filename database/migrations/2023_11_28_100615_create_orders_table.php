@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');            
             $table->unsignedBigInteger('discount_id');            
             $table->float('commission', 15, 6)->default(0);
-            $table->dateTime('order_created_at')->nullable();
+            $table->timestamps('order_created_at')->nullable();
             $table->timestamps();
         });
     }

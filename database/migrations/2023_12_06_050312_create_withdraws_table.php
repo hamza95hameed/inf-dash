@@ -18,7 +18,7 @@ class CreateWithdrawsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('status');
             $table->float('amount', 15, 6)->default(0);
-            $table->dateTime('completed_at')->nullable();
+            $table->timestamps('completed_at')->nullable();
             $table->timestamps();
         });
     }
