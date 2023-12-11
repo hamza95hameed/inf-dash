@@ -69,7 +69,8 @@
         "order-created-at" => "Commande créée à",
         "completed-at" => "Terminé à",
         "create-withdraw" => "Créer virements",
-        "unpaid-balance" => "Solde impayé",
+        "unpaid-balance" => "Solde à payer",
         "new-order" => "Nouvelle commande",
-        "user-commission" => "Utilisateur commission"
+        "user-commission" => "Utilisateur commission",
+        "historical" => "Historique"
     ];

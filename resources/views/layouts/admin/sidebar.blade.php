@@ -28,15 +28,15 @@
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.orders') }}</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-cart-arrow-down"></i><span>{{ __('messages.orders') }}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('orders.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'withdraws' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.withdraws') }}</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill-alt"></i><span>{{ __('messages.withdraws') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.list') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.historical') }}</a></li>
                     </ul>
                 </li>
             @endunless
@@ -48,16 +48,16 @@
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'orders' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.orders') }}</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-cart-arrow-down"></i><span>{{ __('messages.orders') }}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('orders.index') }}">{{ __('messages.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ request()->segment(1) == 'withdraws' ? 'active': ''}}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-percentage"></i><span>{{ __('messages.withdraws') }}</span></a>
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill-alt"></i><span>{{ __('messages.withdraws') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.list') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('withdraws.create') }}">{{ __('messages.add')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.index') }}">{{ __('messages.historical') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraws.create') }}">{{ __('messages.withdraw-request')}}</a></li>
                     </ul>
                 </li>
             @endunless

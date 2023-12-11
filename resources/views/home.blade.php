@@ -25,13 +25,13 @@
                     @endcomponent    
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot
-                        @slot('icon') fas fa-euro-sign @endslot
+                        @slot('icon') fas fa-balance-scale @endslot
                         @slot('title') {{ __('messages.unpaid-balance') }} @endslot
                         @slot('count') {{ @$all_users_balance }}€ @endslot
                     @endcomponent    
                     @component('components.statistics.index')
                         @slot('color') B89270 @endslot
-                        @slot('icon') fas fa-euro-sign @endslot
+                        @slot('icon') fas fa-money-bill-alt @endslot
                         @slot('title') {{ __('messages.withdraw-request') }} @endslot
                         @slot('count') {{ @$withdrawCount }} @endslot
                     @endcomponent    
