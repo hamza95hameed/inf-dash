@@ -26,7 +26,7 @@
         "order" => "Commande",
         "dashboard" => "Tableau de bord",
         "total-order" => "Total commande",
-        "forgot-password" => "Forgot Password",
+        "forgot-password" => "Mot de passe oublié",
         "we-will-send-a-link-to-reset-your-password" => "We will send a link to reset your password",
         "withdraw-request" => 'Demande de virements',
         'withdraw-error' => 'Votre solde actuel est inférieur à 10€',
