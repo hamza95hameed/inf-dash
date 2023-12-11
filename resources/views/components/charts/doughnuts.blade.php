@@ -4,7 +4,7 @@
         <div class="card-header-action dropdown">
             <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle text-white filterDate" style="background: #B89270">7J</a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                <li class="dropdown-title">Select Period</li>
+                <li class="dropdown-title">{{ __('messages.select-period' )}}</li>
                 <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-7 days')) }}" class="duration dropdown-item active">7J</a></li>
                 <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-15 days')) }}" class="duration dropdown-item">15J</a></li>
                 <li><a href="javascript:void(0)" data-end="{{ date('Y-m-d') }}" data-start="{{ date('Y-m-d', strtotime('-30 days')) }}" class="duration dropdown-item">1M</a></li>

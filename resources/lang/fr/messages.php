@@ -72,5 +72,6 @@
         "unpaid-balance" => "Solde à payer",
         "new-order" => "Nouvelle commande",
         "user-commission" => "Utilisateur commission",
-        "historical" => "Historique"
+        "historical" => "Historique",
+        "select-period" => "Sélectionnez la période"
     ];
