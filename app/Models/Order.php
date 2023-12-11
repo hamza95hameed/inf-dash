@@ -13,6 +13,7 @@ class Order extends Model
         'order_no',
         'user_id',
         'discount_id',
+        'user_commission',
         'commission',
         'order_created_at'
     ];

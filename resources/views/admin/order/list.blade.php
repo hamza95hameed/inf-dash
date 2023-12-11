@@ -38,6 +38,7 @@
 										<th>{{ __('messages.user-name') }}</th>
 										<th>{{ __('messages.discount-code') }}</th>
 										<th>{{ __('messages.commission') }}</th>
+										<th>{{ __('messages.user-commission') }}</th>
 										<th>{{ __('messages.order-created-at') }}</th>
 										<th>{{ __('messages.created') }}</th>
 										<th>{{ __('messages.action') }}</th>
@@ -51,6 +52,7 @@
 												<td>{{ $order->user->name }}</td>								
 												<td>{{ $order->discount->name }}</td>								
 												<td>{{ $order->commission }}</td>	
+												<td>{{ $order->user_commission }}</td>	
 												<td>{{ date('Y-m-d', strtotime($order->order_created_at)) }}</td>	
 												<td>{{ date('Y-m-d', strtotime($order->created_at)) }}</td>							
 												<td>

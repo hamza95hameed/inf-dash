@@ -126,7 +126,7 @@ class OrderController extends Controller
                     ->where('discount_id', $discount->id)
                     ->where('user_id', $discount->user_id)
                 ->first();
-                
+                $user       = User::where('id', $discount->user_id)->first();
                 $commission = ($discount->user->commission / 100) * $data['total_line_items_price'];
                 if($order){
                     $order->update([
@@ -138,12 +138,12 @@ class OrderController extends Controller
                         'order_no'         => $order_no,
                         'discount_id'      => $discount->id,
                         'user_id'          => $discount->user_id,
+                        'user_commission'  => $user->commission,
                         'commission'       => $commission,
                         'order_created_at' => $created_at,
                     ]);
                 }
     
-                $user            = User::where('id', $discount->user_id)->first();
                 $current_balance = $user->current_balance + $commission;
                 $total_earning   = $user->total_earning + $commission;
     

@@ -70,5 +70,6 @@
         "completed-at" => "Terminé à",
         "create-withdraw" => "Créer virements",
         "unpaid-balance" => "Solde impayé",
-        "new-order" => "Nouvelle commande"
+        "new-order" => "Nouvelle commande",
+        "user-commission" => "Utilisateur commission"
     ];

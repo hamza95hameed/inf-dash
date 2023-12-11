@@ -59,12 +59,12 @@
                         data: data,
                         backgroundColor: [
                             '#000000',
-                            '#123edd',
-                            '#b89270',
-                            '#8a9f80',
-                            '#ebe6da',
-                            '#f4ddac',
-                            '#f3b372',
+                            '#A1BFA4',
+                            '#B89270',
+                            '#8A9F80',
+                            '#EBE6DA',
+                            '#F4DDAC',
+                            '#F3B372',
                         ],
                         label: 'Dataset 1'
                     }],
