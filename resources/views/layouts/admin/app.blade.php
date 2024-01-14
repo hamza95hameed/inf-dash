@@ -20,6 +20,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
     @stack('css')    
 </head>
 
@@ -45,6 +46,7 @@
     <script src="{{ asset('assets/modules/nicescroll/jquery') }}.nicescroll.min.js"></script>
     <script src="{{ asset('assets/modules/moment.min') }}.js"></script>
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
+    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <!-- JS Libraies -->
 
